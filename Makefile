@@ -90,7 +90,7 @@ create_bucket:
 	-@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
 
 upload_data:
-	-@gsutil cp ${LOCAL_PATH} gs://lw-verspieren-starwars/data/images_train/ #${BUCKET_FILE_NAME}
+	-@gsutil cp ${LOCAL_PATH} gs://lw-verspieren-starwars/data/images_train #${BUCKET_FILE_NAME}
 
 
 
