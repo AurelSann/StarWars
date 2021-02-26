@@ -66,13 +66,13 @@ pypi:
 # ----------------------------------
 
 # path of the file to upload to gcp (the path of the file should be absolute or should match the directory where the make command is run)
-LOCAL_PATH= '/Users/aurelienverspieren/code/AurelSann/StarWars/raw_data/images_training_rev1/*.jpg' # Replace with your local path to `data.csv` and make sure to put it between quotes
+LOCAL_PATH= '/Users/mickaelkomendyak/code/AurelSann/StarWars/raw_data/test_sample/*.jpg' # Replace with your local path to `data.csv` and make sure to put it between quotes
 
 # project id
-PROJECT_ID=wagon-bootcamp-305110  # Replace with your Project's ID
+PROJECT_ID=wagon-bootcamp-305112  # Replace with your Project's ID
 
 # bucket name
-BUCKET_NAME=lw-verspieren-starwars # Use your Project's name as it should be unique
+BUCKET_NAME=lw-komendyak-starwars # Use your Project's name as it should be unique
 
 # bucket directory in which to store the uploaded file (we choose to name this data as a convention)
 BUCKET_FOLDER=data/images_train
@@ -90,7 +90,7 @@ create_bucket:
 	-@gsutil mb -l ${REGION} -p ${PROJECT_ID} gs://${BUCKET_NAME}
 
 upload_data:
-	-@gsutil cp ${LOCAL_PATH} gs://lw-verspieren-starwars/data/images_train/ #${BUCKET_FILE_NAME}
+	-@gsutil cp ${LOCAL_PATH} gs://lw-verspieren-starwars/data/images_train #${BUCKET_FILE_NAME}
 
 
 
