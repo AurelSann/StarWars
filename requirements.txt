@@ -10,7 +10,7 @@ pandas
 scikit-learn
 keras
 tensorflow
-
+pil
 
 # tests/linter
 black
@@ -30,4 +30,5 @@ six>=1.14
 joblib
 memoized-property
 termcolor
+
 
