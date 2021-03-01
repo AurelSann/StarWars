@@ -1,22 +1,22 @@
 import numpy as np
 
-class ScientistValue():
+class DecisionTree():
 
-    def __init__(self, output):
-        self.output = output
+    def __init__(self, prediction):
+        self.prediction = prediction
         self.decision_answer = []
 
 
     def cat1(self):
         '''cat1 : what does it look like ?'''
 
-        smooth = self.output[0]
+        smooth = self.prediction[0]
         #df['Class1.1']
 
-        feature_or_disk = self.output[1]
+        feature_or_disk = self.prediction[1]
         #df['Class1.2']
 
-        star = self.output[2]
+        star = self.prediction[2]
         #df['Class1.3']
 
         if smooth > feature_or_disk:
@@ -39,9 +39,9 @@ class ScientistValue():
     def cat2(self):
         '''cat2 : featureordisk --> could this be a disk view edge-on ?'''
 
-        edgeon_yes = self.output[3]
+        edgeon_yes = self.prediction[3]
         #df['Class2.1']
-        edgeon_no = self.output[4]
+        edgeon_no = self.prediction[4]
         #df['Class2.2']
 
         if edgeon_yes > edgeon_no:
@@ -61,9 +61,9 @@ class ScientistValue():
     def cat3(self):
         '''cat 3 : featureordisk --> edgeon_no --> is there a sign of bar feature ?'''
 
-        bar_yes = self.output[5]
+        bar_yes = self.prediction[5]
         #df['Class3.1']
-        bar_no = self.output[6]
+        bar_no = self.prediction[6]
         #df['Class3.2']
 
         #all : go to cat 4
@@ -83,9 +83,9 @@ class ScientistValue():
     def cat4(self):
         '''cat4 : featureordisk --> no --> bar_yes/no --> spiral arm pattern ?'''
 
-        arm_yes = self.output[7]
+        arm_yes = self.prediction[7]
         #df['Class4.1']
-        arm_no = self.output[8]
+        arm_no = self.prediction[8]
         #df['Class4.2']
 
         if arm_yes > arm_no:
@@ -107,13 +107,13 @@ class ScientistValue():
     featureordisk --> edgeon_no --> bar_yes/no --> arm_no
     featureordisk --> edgeon_no --> --> bar_yes/no --> arm_yes --> all arms sizes --> all number of arms'''
 
-        no_bulge = self.output[9]
+        no_bulge = self.prediction[9]
         #df['Class5.1']
-        noticeable_bulge = self.output[10]
+        noticeable_bulge = self.prediction[10]
         #df['Class5.2']
-        obvious_bulge = self.output[11]
+        obvious_bulge = self.prediction[11]
         #df['Class5.3']
-        dominant_bulge = self.output[12]
+        dominant_bulge = self.prediction[12]
         #df['Class5.4']
 
     #all: go to cat 6
@@ -144,9 +144,9 @@ class ScientistValue():
     #Smooth --> class 7 : all
     #featureordisk --> edgeon_yes --> class 9 :all'''
 
-        odd_yes = self.output[13]
+        odd_yes = self.prediction[13]
         #df['Class6.1']
-        odd_no = self.output[14]
+        odd_no = self.prediction[14]
         #df['Class6.2']
 
         if odd_yes > odd_no:
@@ -164,11 +164,11 @@ class ScientistValue():
 
     def cat7(self):
         #cat7 : Smooth - how rounded is it ?
-        completely_round = self.output[15]
+        completely_round = self.prediction[15]
         #df['Class7.1']
-        in_between = self.output[16]
+        in_between = self.prediction[16]
         #df['Class7.2']
-        cigar_shaped = self.output[17]
+        cigar_shaped = self.prediction[17]
         #df['Class7.3']
 
     #all: go to cat6
@@ -192,19 +192,19 @@ class ScientistValue():
         #cat8 : featureordisk --> edgeon_no --> bar_yes/no --> arm_no --> all --> odd_yes --> ring,
         #disturber or irregular ?
 
-        ring = self.output[18]
+        ring = self.prediction[18]
         #df['Class8.1']
-        lens_or_arc = self.output[19]
+        lens_or_arc = self.prediction[19]
         #df['Class8.2']
-        disturbed = self.output[20]
+        disturbed = self.prediction[20]
         #df['Class8.3']
-        irregular = self.output[21]
+        irregular = self.prediction[21]
         #df['Class8.4']
-        other = self.output[22]
+        other = self.prediction[22]
         #df['Class8.5']
-        merger = self.output[23]
+        merger = self.prediction[23]
         #df['Class8.6']
-        dust_lane = self.output[24]
+        dust_lane = self.prediction[24]
         #df['Class8.7']
 
         #all: stop
@@ -243,11 +243,11 @@ class ScientistValue():
     def cat9(self):
         #cat9 : featureordisk --> edgeon_yes --> if there a bulge, if yes what shape ?
 
-        rounded = self.output[25]
+        rounded = self.prediction[25]
         #df['Class9.1']
-        boxy = self.output[26]
+        boxy = self.prediction[26]
         #df['Class9.2']
-        no_bulge2 = self.output[27]
+        no_bulge2 = self.prediction[27]
         #df['Class9.3']
 
     # all: go to cat6
@@ -271,11 +271,11 @@ class ScientistValue():
     def cat10(self):
         #cat10 : featureordisk --> edgeon_no --> bar_yes/no --> arm_yes --> how tights are the arms ?
 
-        tight = self.output[28]
+        tight = self.prediction[28]
         #df['Class10.1']
-        medium = self.output[29]
+        medium = self.prediction[29]
         #df['Class10.2']
-        loose = self.output[30]
+        loose = self.prediction[30]
         #df['Class10.3']
 
     #all: go to cat 11
@@ -299,17 +299,17 @@ class ScientistValue():
     def cat11(self):
     #cat 11: featureordisk --> edgeon_no --> bar_yes/no --> arm_yes --> all arms sizes --> how many arms ?
 
-        one_arm = self.output[31]
+        one_arm = self.prediction[31]
         #df['Class11.1']
-        two_arms = self.output[32]
+        two_arms = self.prediction[32]
         #df['Class11.2']
-        three_arms = self.output[33]
+        three_arms = self.prediction[33]
         #df['Class11.3']
-        four_arms = self.output[34]
+        four_arms = self.prediction[34]
         #df['Class11.4']
-        more_than_four_arms = self.output[35]
+        more_than_four_arms = self.prediction[35]
         #df['Class11.5']
-        cant_tell_arms = self.output[36]
+        cant_tell_arms = self.prediction[36]
         #df['Class11.6']
 
     #all: go to cat5
@@ -341,10 +341,8 @@ class ScientistValue():
 
         return self.decision_answer
 
-
-
 if __name__ == "__main__":
-    output = np.array([0.5061849 , 0.02533387, 0.09984358, 0.40634132, 0.09516694,
+    prediction = np.array([0.5061849 , 0.02533387, 0.09984358, 0.40634132, 0.09516694,
        0.31117438, 0.18507952, 0.22126181, 0.01901462, 0.15705012,
        0.19438594, 0.03589064, 0.21429499, 0.78570501, 0.19592663,
        0.2217514 , 0.05080319, 0.03898825, 0.01447876, 0.02751926,
@@ -352,6 +350,6 @@ if __name__ == "__main__":
        0.01039219, 0.02341971, 0.08231398, 0.07125346, 0.03151208,
        0.01228107, 0.07996398, 0.01434553, 0.00636853, 0.00664883,
        0.        ])
-    trainer = ScientistValue(output)
+    trainer = DecisionTree(prediction)
     result = trainer.cat1()
-
+    print(result)
