@@ -1,9 +1,13 @@
-'''Get data from Aurelien Bucket'''
+'''Get DataFrame from Aurelien Bucket'''
 
 import pandas as pd
 from google.cloud import storage
+import numpy as np
+from PIL import Image
+
 
 BUCKET_DATA_PATH = "gs://lw-verspieren-starwars/data/"
+
 
 def rename(GalaxyID):
     return str(GalaxyID)+'.jpg'
@@ -52,3 +56,19 @@ def get_full_data():
     # Loading train
     df_test = pd.read_csv(f'{BUCKET_DATA_PATH}central_pixel_benchmark.csv')
     return {'train':df_train, 'test':df_test}
+
+def load_image(image):
+    '''returns one image'''
+    folder = f'train_bucket/images_traindata_images_train_{image}'
+    img = Image.open(folder)
+    img_array = np.array(img)
+    return np.resize(img_array, (224,224,3))
+
+def load_images(df):
+    '''returns array of images'''
+    img_list = []
+    for _, row in df.iterrows():
+        img = load_image(row["image"])
+        img_list.append(img)
+    return np.stack(img_list)
+
