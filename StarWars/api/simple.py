@@ -14,9 +14,13 @@ app = FastAPI()
 @app.post("/uploadfile")
 async def create_upload_file(file: bytes = File(...)):
 
+    image_path = "image.png"
+
+    with open(image_path, "wb") as f:
+        f.write(file)
 
     # make prediction
-    pred = image_prediction(file.filename)
+    pred = image_prediction(image_path)
 
     # decision tree
     result = process_decision_tree(pred)
