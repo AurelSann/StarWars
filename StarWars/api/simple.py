@@ -3,7 +3,7 @@ from fastapi import FastAPI, File, UploadFile
 import numpy as np
 from StarWars.decisiontree import DecisionTree
 from StarWars.scientistvalue import HubbleValue
-from StarWars.image_prediction import image_prediction
+from StarWars.ImagePrediction import ImagePrediction
 import tensorflow
 
 model = tensorflow.keras.models.load_model('final_model.h5')
@@ -12,20 +12,11 @@ app = FastAPI()
 
 
 @app.post("/uploadfile")
-async def create_upload_file(file: UploadFile = File(...)):
+async def create_upload_file(file: bytes = File(...)):
 
 
     # make prediction
-    pred = image_prediction(image)
-
-    pred = np.array([0.5061849, 0.02533387, 0.09984358, 0.40634132, 0.09516694,
-                     0.31117438, 0.18507952, 0.22126181, 0.01901462, 0.15705012,
-                     0.19438594, 0.03589064, 0.21429499, 0.78570501, 0.19592663,
-                     0.2217514, 0.05080319, 0.03898825, 0.01447876, 0.02751926,
-                     0.02383724, 0.06303088, 0.04324729, 0.00319327, 0.06603167,
-                     0.01039219, 0.02341971, 0.08231398, 0.07125346, 0.03151208,
-                     0.01228107, 0.07996398, 0.01434553, 0.00636853, 0.00664883,
-                     0])
+    pred = image_prediction(file.filename)
 
     # decision tree
     result = process_decision_tree(pred)
@@ -37,8 +28,9 @@ async def create_upload_file(file: UploadFile = File(...)):
 
 
 def image_prediction(image):
-    #pred = model.predict(image)
-    pass
+    prediction = ImagePrediction(image)
+    pred = prediction.prediction
+    return pred
 
 
 def process_decision_tree(pred):
