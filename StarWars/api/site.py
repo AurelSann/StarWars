@@ -1,5 +1,7 @@
 import streamlit as st
 from PIL import Image
+import requests
+import io
 
 
 ##Design, couleurs
@@ -19,11 +21,30 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 uploaded_file = st.file_uploader("Choose a galaxy image", type="jpg")
 
 if uploaded_file is not None:
+
+    # uploaded_file.__dict__
+
     image = Image.open(uploaded_file)
     st.image(image, caption='Beautiful ! Now, let\'s classify it...', use_column_width=True)
 
+    # image.__dict__
 
-#API Call
+    # convert imge to bytes
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='JPEG')
+    img_byte_arr = img_byte_arr.getvalue()
+
+    # with open("image.jpg", "wb") as f:
+    #     f.write(img_byte_arr)
+
+    #API Call
+    url = 'http://localhost:8000/uploadfile'
+    files = {'file': img_byte_arr}
+    response = requests.post(url, files=files)
+    response
+
+
+
 
 
 #Wait time
@@ -46,4 +67,7 @@ if st.checkbox('Show progress bar'):
 
 
 ##Output pour chaque classe
+#if API returns
+#if Hubble == Sa/Sb
+#if Hubble == Sb/Sc
 
