@@ -1,3 +1,9 @@
+import numpy as np
+from PIL import Image
+import pandas as pd
+import tensorflow as tf
+from data import load_images
+
 class DataGenerator(tf.keras.utils.Sequence):
 
     def __init__(self, df, batch_size=64, shuffle=True, ):
@@ -13,8 +19,6 @@ class DataGenerator(tf.keras.utils.Sequence):
                               horizontal_flip=True,
                               fill_mode='nearest')
         self.on_epoch_end()
-
-
 
     def __len__(self):
         '''returns number of minibatches per epoch'''
@@ -47,6 +51,7 @@ class DataGenerator(tf.keras.utils.Sequence):
         index = self.index[index * self.batch_size:(index + 1) * self.batch_size]
         batch = [self.indices[k] for k in index]
         X, y = self._get_data(batch)
+
         # Add Augmentator sa class attr
         X_augmented = self.augmentator.flow(X, batch_size=self.batch_size, shuffle=False)
         return next(X_augmented), y
