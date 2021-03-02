@@ -3,6 +3,9 @@ from fastapi import FastAPI, File, UploadFile
 import numpy as np
 from StarWars.decisiontree import DecisionTree
 from StarWars.scientistvalue import HubbleValue
+import tensorflow
+
+model = tensorflow.keras.models.load_model('final_model.h5')
 
 app = FastAPI()
 
@@ -10,11 +13,9 @@ app = FastAPI()
 @app.post("/uploadfile")
 async def create_upload_file(file: UploadFile = File(...)):
 
-    # convert image to array
-    file_array = convert(file)
 
     # make prediction
-    pred = make_pred(file_array)
+    pred = image_prediction(image)
 
     pred = np.array([0.5061849, 0.02533387, 0.09984358, 0.40634132, 0.09516694,
                      0.31117438, 0.18507952, 0.22126181, 0.01901462, 0.15705012,
@@ -34,13 +35,8 @@ async def create_upload_file(file: UploadFile = File(...)):
     return {"denom": denom}
 
 
-def convert(file):
-    file_array = "todo"
-    return file_array
-
-
-def make_pred(file_array):
-    pred = "todo"
+def image_prediction(image):
+    #pred = model.predict(image)
     return pred
 
 
