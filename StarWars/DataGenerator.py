@@ -11,8 +11,14 @@ class DataGenerator(tf.keras.utils.Sequence):
         self.df = df
         self.indices = self.df.index.tolist()
         self.shuffle = shuffle
+        self.augmentator = ImageDataGenerator(
+                              rotation_range=90,
+                              width_shift_range=[-50,50],
+                              height_shift_range=0.5,
+                              brightness_range= [0.2, 1.9],
+                              horizontal_flip=True,
+                              fill_mode='nearest')
         self.on_epoch_end()
-
 
     def __len__(self):
         '''returns number of minibatches per epoch'''
@@ -45,4 +51,7 @@ class DataGenerator(tf.keras.utils.Sequence):
         index = self.index[index * self.batch_size:(index + 1) * self.batch_size]
         batch = [self.indices[k] for k in index]
         X, y = self._get_data(batch)
-        return X, y
+
+        # Add Augmentator sa class attr
+        X_augmented = self.augmentator.flow(X, batch_size=self.batch_size, shuffle=False)
+        return next(X_augmented), y

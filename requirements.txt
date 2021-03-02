@@ -10,6 +10,7 @@ pandas
 scikit-learn
 keras
 tensorflow
+pil
 
 # tests/linter
 black
