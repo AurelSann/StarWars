@@ -41,7 +41,11 @@ if uploaded_file is not None:
     url = 'http://localhost:8000/uploadfile'
     files = {'file': img_byte_arr}
     response = requests.post(url, files=files)
-    response
+    if response.status_code == 200:
+        resp = response.json()
+        resp
+    else:
+        "ça marche pas"
 
 
 
