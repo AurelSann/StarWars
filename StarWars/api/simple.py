@@ -13,11 +13,9 @@ app = FastAPI()
 @app.post("/uploadfile")
 async def create_upload_file(file: UploadFile = File(...)):
 
-    # convert image to array
-    file_array = convert(file)
 
     # make prediction
-    pred = make_pred(file_array)
+    pred = image_prediction(image)
 
     pred = np.array([0.5061849, 0.02533387, 0.09984358, 0.40634132, 0.09516694,
                      0.31117438, 0.18507952, 0.22126181, 0.01901462, 0.15705012,
@@ -37,14 +35,8 @@ async def create_upload_file(file: UploadFile = File(...)):
     return {"denom": denom}
 
 
-def convert(file):
-    """ Convert the file in a numpy array """
-    file_array = np.array(file)
-    return file_array
-
-
-def make_pred(file_array):
-    pred = model.predict(file_array)
+def image_prediction(image):
+    #pred = model.predict(image)
     return pred
 
 
