@@ -97,9 +97,35 @@ upload_data:
 
 
 
+####  PROD docker
+
+
+run_api:
+	uvicorn StarWars.api.simple:app --reload
+
+run_site:
+	streamlit run StarWars/api/site.py
 
 
 
+GCP_PROJECT_ID=sapient-axle-305110
+DOCKER_IMAGE_NAME=hamster
+GCR_MULTI_REGION=eu.gcr.io
+GCR_REGION=europe-west1
 
 
+docker_build:
+	docker build -t ${GCR_MULTI_REGION}/${GCP_PROJECT_ID}/${DOCKER_IMAGE_NAME} .
+
+docker_it:
+	docker run -it -e PORT=8000 -p 8000:8000 ${GCR_MULTI_REGION}/${GCP_PROJECT_ID}/${DOCKER_IMAGE_NAME} sh
+
+docker_run:
+	docker run -e PORT=8000 -p 8000:8000 ${GCR_MULTI_REGION}/${GCP_PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+docker_push:
+	docker push ${GCR_MULTI_REGION}/${GCP_PROJECT_ID}/${DOCKER_IMAGE_NAME}
+
+docker_deploy:
+	gcloud run deploy --image ${GCR_MULTI_REGION}/${GCP_PROJECT_ID}/${DOCKER_IMAGE_NAME} --platform managed --region ${GCR_REGION}
 

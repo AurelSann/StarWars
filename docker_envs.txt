@@ -1,0 +1,16 @@
+
+export GCP_PROJECT_ID="sapient-axle-305110"
+export DOCKER_IMAGE_NAME="hamster"
+export GCR_MULTI_REGION="eu.gcr.io"  # replace with the appropriate multi-region
+export GCR_REGION="europe-west1"  # replace with the appropriate region
+
+echo $GCP_PROJECT_ID
+echo $DOCKER_IMAGE_NAME
+echo $GCR_MULTI_REGION
+echo $GCR_REGION
+
+docker build -t $GCR_MULTI_REGION/$GCP_PROJECT_ID/$DOCKER_IMAGE_NAME .
+
+docker run -e PORT=8000 -p 8000:8000 $GCR_MULTI_REGION/$GCP_PROJECT_ID/$DOCKER_IMAGE_NAME
+
+docker push $GCR_MULTI_REGION/$GCP_PROJECT_ID/$DOCKER_IMAGE_NAME
