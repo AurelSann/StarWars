@@ -19,20 +19,20 @@ class DecisionTree():
         star = self.prediction[2]
         #df['Class1.3']
 
-        if smooth > feature_or_disk:
+        if smooth > feature_or_disk or smooth > star:
             #go to cat 7
             self.decision_answer.append('smooth')
             self.cat7()
 
-        elif star > smooth or star > feature_or_disk:
+        elif feature_or_disk > smooth or feature_or_disk > star:
         #STOP --> étoile
-            print("c'est une étoile")
-
-        else:
-        #feature_or_disk > all:
-            #go to class 2
             self.decision_answer.append('feature_or_disk')
             self.cat2()
+
+        else:
+        #star > all:
+            #go to class 2
+            self.decision_answer.append('star')
 
         return self.decision_answer
 
