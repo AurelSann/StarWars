@@ -38,7 +38,7 @@ if uploaded_file is not None:
     #     f.write(img_byte_arr)
 
     #API Call
-    url = 'http://localhost:8000/uploadfile'
+    url = 'https://hamster-ev6iq3m3na-ew.a.run.app/uploadfile'
     files = {'file': img_byte_arr}
     response = requests.post(url, files=files)
     if response.status_code == 200:
@@ -46,9 +46,6 @@ if uploaded_file is not None:
         resp
     else:
         "ça marche pas"
-
-
-
 
 
 #Wait time
