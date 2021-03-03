@@ -1,6 +1,6 @@
 
-from fastapi import FastAPI, File, UploadFile
-import numpy as np
+from fastapi import FastAPI, File
+# import numpy as np
 from StarWars.decisiontree import DecisionTree
 from StarWars.scientistvalue import HubbleValue
 from StarWars.ImagePrediction import ImagePrediction
@@ -13,6 +13,7 @@ app = FastAPI()
 
 @app.post("/uploadfile")
 async def create_upload_file(file: bytes = File(...)):
+
 
     image_path = "image.png"
 
