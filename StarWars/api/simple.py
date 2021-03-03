@@ -14,9 +14,9 @@ app = FastAPI()
 @app.post("/uploadfile")
 async def create_upload_file(file: bytes = File(...)):
 
-    image_path = "image_api.jpg"
 
-    # save image to disk
+    image_path = "image.png"
+
     with open(image_path, "wb") as f:
         f.write(file)
 
