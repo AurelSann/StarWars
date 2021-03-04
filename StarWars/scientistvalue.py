@@ -86,8 +86,8 @@ class HubbleValue():
         else:
             f'Send another picture please, this may not be a galaxy!'
 
-        return f'This galaxy has the following characteristics: {self.decision_answer}.\
-     According to Hubble classification, this would be {self.hubble} type.'
+        print(self.decision_answer)
+        return self.hubble
 
 if __name__ == "__main__":
     prediction = np.array([0.5061849 , 0.02533387, 0.09984358, 0.40634132, 0.09516694,
