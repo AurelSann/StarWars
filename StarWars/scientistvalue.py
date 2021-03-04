@@ -10,33 +10,30 @@ class HubbleValue():
     def final(self):
 
 
-        if 'bar_no' and 'arm_no' and 'odd_no' in self.decision_answer:
+        if 'bar_no' in self.decision_answer and 'arm_no' in self.decision_answer and 'odd_no' in self.decision_answer:
             self.hubble = 'S0'
 
-
-
-        #update jeudi
-
-        elif 'bar_yes' and 'arm_yes' and 'tight' in self.decision_answer:
+        elif 'bar_yes' in self.decision_answer and 'arm_yes' in self.decision_answer and 'tight' in self.decision_answer:
             self.hubble = 'SBa/SBb'
 
-        elif 'bar_yes' and 'arm_yes' and 'medium' in self.decision_answer:
+        elif 'bar_yes' in self.decision_answer and 'arm_yes' in self.decision_answer and 'medium' in self.decision_answer:
             self.hubble = 'SBb/SBc'
 
-        elif 'bar_yes' and 'arm_yes' and 'loose' in self.decision_answer:
+        elif 'bar_yes' in self.decision_answer and 'arm_yes' in self.decision_answer and 'loose' in self.decision_answer:
             self.hubble = 'SBc/SBd'
 
-        elif 'bar_yes' and 'arm_no' and 'odd_no' in self.decision_answer:
+        elif 'bar_yes' in self.decision_answer and 'arm_no' in self.decision_answer:
             self.hubble = 'SB0'
 
 
-        elif 'bar_no' and 'arm_yes' and 'tight' in self.decision_answer:
+        elif 'bar_no' in self.decision_answer and 'arm_yes' in self.decision_answer and 'tight' in self.decision_answer:
             self.hubble = 'Sa/Sb'
 
-        elif 'bar_no' and 'arm_yes' and 'medium' in self.decision_answer:
+
+        elif 'bar_no' in self.decision_answer and 'arm_yes' in self.decision_answer and 'medium' in self.decision_answer:
             self.hubble = 'Sb/Sc'
 
-        elif 'bar_no' and 'arm_yes' and 'loose' in self.decision_answer:
+        elif 'bar_no' in self.decision_answer and 'arm_yes' in self.decision_answer and 'loose' in self.decision_answer:
             self.hubble = 'Sc/Sd'
 
 
@@ -102,12 +99,12 @@ class HubbleValue():
 
 if __name__ == "__main__":
     prediction = np.array([0.0061849 , 0.2533387, 0.09984358, 0.00634132, 0.9516694,
-       0.031117438, 0.18507952, 0.22126181, 0.801901462, 0.15705012,
+       0.31117438, 0.918507952, 0.92126181, 0.801901462, 0.15705012,
        0.19438594, 0.03589064, 0.21429499, 0.078570501, 0.19592663,
        0.2217514 , 0.05080319, 0.03898825, 0.01447876, 0.02751926,
        0.02383724, 0.06303088, 0.04324729, 0.00319327, 0.06603167,
-       0.01039219, 0.02341971, 0.08231398, 0.7125346, 0.03151208,
-       0.01228107, 0.07996398, 0.01434553, 0.00636853, 0.664883,
+       0.01039219, 0.02341971, 0.08231398, 0.7125346, 0.3151208,
+       0.1228107, 0.07996398, 0.01434553, 0.00636853, 0.664883,
        0.        ])
     tree = DecisionTree(prediction)
     result = tree.cat1()
