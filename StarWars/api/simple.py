@@ -9,6 +9,10 @@ model = tensorflow.keras.models.load_model('final_model.h5')
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return "coucou vas voir dans /docs"
+
 @app.post("/uploadfile")
 async def create_upload_file(file: bytes = File(...)):
     image_path = "image.png"
@@ -20,7 +24,7 @@ async def create_upload_file(file: bytes = File(...)):
     result = process_decision_tree(pred)
     # scientific denomination
     denom = process_scientific_denomination(result)
-    return {"denom": denom, "pred": result}
+    return {"hubble": denom, "features": result, "pred": list([float(f) for f in pred])}
 
 def image_prediction(image):
     prediction = ImagePrediction(image)
