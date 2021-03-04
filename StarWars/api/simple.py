@@ -20,7 +20,7 @@ async def create_upload_file(file: bytes = File(...)):
     result = process_decision_tree(pred)
     # scientific denomination
     denom = process_scientific_denomination(result)
-    return {"denom": denom}
+    return {"denom": denom, "pred": result}
 
 def image_prediction(image):
     prediction = ImagePrediction(image)
