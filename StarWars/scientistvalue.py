@@ -9,79 +9,91 @@ class HubbleValue():
 
     def final(self):
 
-        #Cat 10
-        if 'tight' in self.decision_answer:
-            self.hubble = 'Sa/Sb'
 
-        if 'medium' in self.decision_answer:
-            self.hubble = 'Sb/Sc'
+        if 'bar_no' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'S0'
 
-        if 'loose' in self.decision_answer:
-            self.hubble = 'Sc/Sd'
+        elif 'bar_no' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'S0'
 
-        if 'no_bulge2' in self.decision_answer:
-            self.hubble = 'Sc/Sd'
+        elif 'bar_no' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'S0'
+
+
+        #update jeudi
+
+        elif 'bar_yes' and 'arm_yes' and 'tight' in self.decision_answer:
+            self.hubble = 'SBa/SBb'
+
+        elif 'bar_yes' and 'arm_yes' and 'medium' in self.decision_answer:
+            self.hubble = 'SBb/SBc'
+
+        elif 'bar_yes' and 'arm_yes' and 'loose' in self.decision_answer:
+            self.hubble = 'SBc/SBd'
+
+        elif 'bar_yes' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'SB0'
+
+        elif 'bar_yes' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'SB0'
+
+        elif 'bar_yes' and 'arm_no' and 'odd_no' in self.decision_answer:
+            self.hubble = 'SB0'
+
+
+
 
         #Cat 9
-        if 'boxy' in self.decision_answer:
+        elif 'boxy' in self.decision_answer:
             self.hubble = 'SB'
 
-        if 'rounded' in self.decision_answer:
+        elif 'rounded' in self.decision_answer:
             self.hubble = 'S'
 
         #Cat 7
-        if 'completely_round' in self.decision_answer:
+        elif 'completely_round' in self.decision_answer:
             self.hubble = 'E0-E2'
 
-        if 'in_between' in self.decision_answer:
+        elif 'in_between' in self.decision_answer:
             self.hubble = 'E3-E5'
 
-        if 'cigar_shaped' in self.decision_answer:
+        elif 'cigar_shaped' in self.decision_answer:
             self.hubble = 'E6-E7'
 
         #Cat 8
-        if 'ring' in self.decision_answer:
+        elif 'ring' in self.decision_answer:
             self.hubble = 'ring'
 
-        if 'lens_or_arc' in self.decision_answer:
+        elif 'lens_or_arc' in self.decision_answer:
             self.hubble = 'lens or an arc'
 
-        if 'disturbed' in self.decision_answer:
+        elif 'disturbed' in self.decision_answer:
             self.hubble = 'disturbed'
 
-        if 'irregular' in self.decision_answer:
+        elif 'irregular' in self.decision_answer:
             self.hubble = 'irregular'
 
-        if 'other' in self.decision_answer:
+        elif 'other' in self.decision_answer:
             self.hubble = 'irregular'
 
-        if 'merger' in self.decision_answer:
+        elif 'merger' in self.decision_answer:
             self.hubble = 'merger'
 
-        if 'dust_lane' in self.decision_answer:
+        elif 'dust_lane' in self.decision_answer:
             self.hubble = 'dust lane'
 
-        #Cat 5
-        if 'no_bulge' in self.decision_answer:
+        elif 'tight' in self.decision_answer:
+            self.hubble = 'Sa/Sb'
+
+        elif 'medium' in self.decision_answer:
+            self.hubble = 'Sb/Sc'
+
+        elif 'loose' in self.decision_answer:
             self.hubble = 'Sc/Sd'
 
-        if 'bar_yes' and 'arm_no' and 'noticeable_bulge' in self.decision_answer:
-            self.hubble = 'SB0'
+        elif 'no_bulge2' in self.decision_answer:
+            self.hubble = 'Sc/Sd'
 
-        if 'bar_yes' and 'arm_no' and 'obvious_bulge' in self.decision_answer:
-            self.hubble = 'SB0'
-
-        if 'bar_yes' and 'arm_no' and 'dominant_bulge' in self.decision_answer:
-            self.hubble = 'SB0'
-
-        if 'bar_no' and 'arm_no' and 'noticeable_bulge' in self.decision_answer:
-            self.hubble = 'S0'
-
-        if 'bar_no' and 'arm_no' and 'obvious_bulge' in self.decision_answer:
-            self.hubble = 'S0'
-
-        if 'bar_no' and 'arm_no' and 'dominant_bulge' in self.decision_answer:
-            self.hubble = 'S0'
 
         else:
             f'Send another picture please, this may not be a galaxy!'
