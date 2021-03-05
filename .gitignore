@@ -6,6 +6,5 @@ raw_data/
 **/__pycache__/
 .env
 *.h5
-*.png
 *.jpg
 *.jpeg
